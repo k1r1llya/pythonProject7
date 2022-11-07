@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>668</width>
+    <height>665</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Yu Gothic UI</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="button_for_pen_color">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>10</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>NSimSun</family>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>false</kerning>
+    </font>
+   </property>
+   <property name="text">
+    <string>Choose your fighter</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_for_width">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>10</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>NSimSun</family>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>false</kerning>
+    </font>
+   </property>
+   <property name="text">
+    <string>Choose your weapon</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSave">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>12</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
