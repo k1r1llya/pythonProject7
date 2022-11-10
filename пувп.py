@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import *
 SIZE = 0
 h = 100
 w = 100
+file_name = ''
 
 
 class miniPhotoshop(QMainWindow):
@@ -41,8 +42,12 @@ class clssCreater(QDialog):
     def getthis(self):
         global h
         global w
+        global file_name
+        global type
         h = int(self.height_b.text())
         w = int(self.width_b.text())
+        file_name = self.lineEdit.text()
+        type = self.comboBox.currentText()
         self.pr2ject = prject()
         self.pr2ject.show()
 
@@ -54,8 +59,6 @@ class clssInstruct(QDialog):
 
 class prject(QDialog):
     def __init__(self):
-        global h
-        global w
         self.h = h
         self.w = w
         super(prject, self).__init__()
@@ -65,7 +68,7 @@ class prject(QDialog):
         self.setWindowTitle('Draw version 0.1')
         self.button_for_pen_color.clicked.connect(self.set_color)
         self.button_for_width.clicked.connect(self.set_pen_width)
-        self.btnSave.clicked.connect(lambda: prject().image.save("image.png", "PNG"))
+        self.btnSave.clicked.connect(lambda: prject().image.save(f"{file_name}.{type}", f"{type}"))
         self.pen_color = Qt.green
         self.pen_width = 10
         self.image = QImage(self.h, self.w, QImage.Format_RGB32)
@@ -77,6 +80,7 @@ class prject(QDialog):
         painter.drawImage(event.rect(), self.image, self.rect())
 
     def mousePressEvent(self, event):
+        self.flag = True
         self.path.moveTo(event.pos())
 
     def clearImage(self):
@@ -94,8 +98,8 @@ class prject(QDialog):
         self.image.save(fileName, fileFormat)
 
     def set_color(self):
-        prject().saveImage("image.png", "PNG")
-        self.image = QImage("image.png")
+        self.curr_image = Image.open(f"{file_name}.{type[1:]}",f'{type.upper()[1:]}')
+        self.image = ImageQt(self.curr_image)
         self.pen_color = QColorDialog.getColor()
 
     def get_figure(self):
@@ -109,7 +113,12 @@ class prject(QDialog):
                       self.pen_width, Qt.SolidLine, Qt.RoundCap,
                       Qt.RoundJoin))
         p.drawPath(self.path)
+        while self.flag:
+            prject().saveImage("123.jpg", "JPG")
+            self.flag = False
+            continue
         p.end()
+        prject().saveImage(f"{file_name}.{type}", f'{type.upper()}')
         self.update()
 
 class clssFigure_chooser(QDialog):
