@@ -17,6 +17,8 @@ class Drawer(QWidget):
         self.myPenColor = Qt.blue
         self.flag = False
         self.image = QImage(w, h, QImage.Format_RGB32)
+        self.im = Image.new("RGB", (500, 500), (0, 255, 0))
+        self.im.save('nwepict.jpg')
         self.path = QPainterPath()
         self.clearImage()
 
@@ -43,8 +45,7 @@ class Drawer(QWidget):
         self.path.moveTo(event.pos())
 
     def set_color(self):
-        drawer = Drawer()
-        self.curr_image = Image.open("nimage.png")
+        self.curr_image = Image.open('nwepict.jpg')
         self.image = ImageQt(self.curr_image)
         print(self.image)
         self.pen_color = QColorDialog.getColor()
@@ -57,7 +58,7 @@ class Drawer(QWidget):
                       Qt.RoundJoin))
         p.drawPath(self.path)
         while self.flag:
-            drawer.saveImage("123.jpg", "JPG")
+            drawer.saveImage("nwepict.jpg", "JPG")
             self.flag = False
             continue
         p.end()

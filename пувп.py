@@ -72,6 +72,8 @@ class prject(QDialog):
         self.pen_color = Qt.green
         self.pen_width = 10
         self.image = QImage(self.h, self.w, QImage.Format_RGB32)
+        self.im = Image.new("RGB", (500, 500), (255, 255, 255))
+        self.im.save("nwepict.jpg")
         self.path = QPainterPath()
         self.clearImage()
 
@@ -98,8 +100,9 @@ class prject(QDialog):
         self.image.save(fileName, fileFormat)
 
     def set_color(self):
-        self.curr_image = Image.open(f"{file_name}.{type[1:]}",f'{type.upper()[1:]}')
+        self.curr_image = Image.open('nwepict.jpg')
         self.image = ImageQt(self.curr_image)
+        print(self.image)
         self.pen_color = QColorDialog.getColor()
 
     def get_figure(self):
@@ -110,15 +113,14 @@ class prject(QDialog):
         self.path.lineTo(event.pos())
         p = QPainter(self.image)
         p.setPen(QPen(self.pen_color,
-                      self.pen_width, Qt.SolidLine, Qt.RoundCap,
-                      Qt.RoundJoin))
+                  self.pen_width, Qt.SolidLine, Qt.RoundCap,
+                  Qt.RoundJoin))
         p.drawPath(self.path)
         while self.flag:
-            prject().saveImage("123.jpg", "JPG")
+            prject().saveImage("nwepict.jpg", "JPG")
             self.flag = False
             continue
         p.end()
-        prject().saveImage(f"{file_name}.{type}", f'{type.upper()}')
         self.update()
 
 class clssFigure_chooser(QDialog):
