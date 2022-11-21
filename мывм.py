@@ -1,23 +1,8 @@
-for n in range(100):
-    a = bin(n)
-    r = 0
-    j = 0
-    for i in a[2:]:
-        if i == '1':
-           r += 1
+def xywz(x,y,w,z):
+    return (x <= (y == w)) and (y == (w <= z))
 
-    if r % 2 == 0:
-        g = a + '0'
-    else:
-        g = a + '1'
-
-    for i in g[2:]:
-        if i == '1':
-           j += 1
-
-    if  r % 2 == 0:
-        g += '0'
-    else:
-        g += '1'
-    if int(g[2:],2) > 54:
-        print(n,int(g[2:],2))
+for x in range(2):
+    for y in range(2):
+        for w in range(2):
+            for z in range(2):
+                print(x,y,z,w,xywz(x,y,w,z))

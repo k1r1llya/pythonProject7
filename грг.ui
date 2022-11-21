@@ -53,7 +53,7 @@
      <string>Небольшая подсказка</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="instruct_but">
     <property name="geometry">
      <rect>
       <x>310</x>

@@ -11,14 +11,13 @@ class Drawer(QWidget):
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setAttribute(Qt.WA_StaticContents)
-        h = 400
-        w = 400
+        self.h = 400
+        self.w = 400
+        self.myPenColor = Qt.green
         self.myPenWidth = 10
-        self.myPenColor = Qt.blue
-        self.flag = False
-        self.image = QImage(w, h, QImage.Format_RGB32)
-        self.im = Image.new("RGB", (500, 500), (0, 255, 0))
-        self.im.save('nwepict.jpg')
+        self.image = QImage(self.h, self.w, QImage.Format_RGB32)
+        self.im = Image.new("RGB", (500, 500), (255, 255, 255))
+        self.im.save("nwepict.jpg")
         self.path = QPainterPath()
         self.clearImage()
 
@@ -41,28 +40,28 @@ class Drawer(QWidget):
         painter.drawImage(event.rect(), self.image, self.rect())
 
     def mousePressEvent(self, event):
-        self.flag = True
         self.path.moveTo(event.pos())
 
     def set_color(self):
+        self.path = QPainterPath()
+        self.image.fill(Qt.white)
         self.curr_image = Image.open('nwepict.jpg')
         self.image = ImageQt(self.curr_image)
         print(self.image)
-        self.pen_color = QColorDialog.getColor()
+        self.myPenColor = QColorDialog.getColor()
 
     def mouseMoveEvent(self, event):
         self.path.lineTo(event.pos())
         p = QPainter(self.image)
         p.setPen(QPen(self.myPenColor,
-                      self.myPenWidth, Qt.SolidLine, Qt.RoundCap,
-                      Qt.RoundJoin))
+                    self.myPenWidth, Qt.SolidLine, Qt.RoundCap,
+                    Qt.RoundJoin))
         p.drawPath(self.path)
-        while self.flag:
-            drawer.saveImage("nwepict.jpg", "JPG")
-            self.flag = False
-            continue
         p.end()
+        Drawer().saveImage("nwepict.jpg", "JPG")
         self.update()
+
+
 
     def sizeHint(self):
         return QSize(300, 300)
@@ -70,7 +69,7 @@ class Drawer(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    w = QWidget()
+    w = QDialog()
     btnSave  = QPushButton("Сохранить изображение -> image.png")
     btnClear = QPushButton("Очистить холст")
     drawer   = Drawer()
