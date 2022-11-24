@@ -9,7 +9,13 @@ from PyQt5.QtWidgets import *
 SIZE = 0
 h = 100
 w = 100
+type_file = ''
 file_name = ''
+flag_for_square = False
+flag_for_triangle = False
+flag_for_round = False
+EVENTLOG = []
+penwidth = 10
 
 
 class miniPhotoshop(QMainWindow):
@@ -52,55 +58,71 @@ class clssCreater(QDialog):
         self.Drawer.show()
 
 
-
 class Drawerd(QWidget):
     def __init__(self, parent=None):
-            QWidget.__init__(self, parent)
-            self.setAttribute(Qt.WA_StaticContents)
-            self.h = h
-            self.w = w
-            self.myPenColor = Qt.black
-            self.myPenWidth = 10
-            self.image = QImage(self.h, self.w, QImage.Format_RGB32)
-            self.im = Image.new("RGB", (500, 500), (255, 255, 255))
-            self.im.save("nwepict.jpg")
-            self.path = QPainterPath()
-            self.clearImage()
+        QWidget.__init__(self, parent)
+        self.setAttribute(Qt.WA_StaticContents)
+        self.h = h
+        self.w = w
+        self.myPenColor = Qt.black
+        self.myPenWidth = 10
+        self.image = QImage(self.h, self.w, QImage.Format_RGB32)
+        self.im = Image.new("RGB", (500, 500), (255, 255, 255))
+        self.im.save("nwepict.jpg")
+        self.path = QPainterPath()
+        self.clearImage()
 
     def clearImage(self):
-            self.path = QPainterPath()
-            self.image.fill(Qt.white)
-            self.update()
+        self.path = QPainterPath()
+        self.image.fill(Qt.white)
+        self.update()
 
     def saveImage(self, fileName, fileFormat):
-            self.image.save(fileName, fileFormat)
+        self.image.save(fileName, fileFormat)
 
     def paintEvent(self, event):
-            painter = QPainter(self)
-            painter.drawImage(event.rect(), self.image, self.rect())
+        painter = QPainter(self)
+        painter.drawImage(event.rect(), self.image, self.rect())
 
     def mousePressEvent(self, event):
-            self.path.moveTo(event.pos())
+        self.path.moveTo(event.pos())
 
     def set_color(self):
-            self.path = QPainterPath()
-            self.image.fill(Qt.white)
-            self.curr_image = Image.open('nwepict.jpg')
-            self.image = ImageQt(self.curr_image)
-            print(self.image)
-            self.myPenColor = QColorDialog.getColor()
+        self.path = QPainterPath()
+        self.image.fill(Qt.white)
+        self.curr_image = Image.open('nwepict.jpg')
+        self.image = ImageQt(self.curr_image)
+        self.myPenColor = QColorDialog.getColor()
+        print(self.myPenColor)
 
     def mouseMoveEvent(self, event):
-            self.path.lineTo(event.pos())
-            p = QPainter(self.image)
-            p.setPen(QPen(self.myPenColor,
-                          self.myPenWidth, Qt.SolidLine, Qt.RoundCap,
-                          Qt.RoundJoin))
+        global flag_for_square
+        global flag_for_triangle
+        global flag_for_round
+        self.path.lineTo(event.pos())
+        p = QPainter(self.image)
+        p.setPen(QPen(self.myPenColor,
+                      self.myPenWidth, Qt.SolidLine, Qt.RoundCap,
+                      Qt.RoundJoin))
+        print(self.myPenColor, self.myPenWidth)
+        if flag_for_round == True:
+            p.drawEllipse(event.x(), event.y(), 55, 43)
+            flag_for_round = False
+        if flag_for_square == True:
+            p.drawRect(event.x(), event.y(), 55, 43)
+            flag_for_square = False
+        if flag_for_triangle == True:
+            self.path.moveTo(event.x() - 50, event.y())
+            self.path.lineTo(event.x(), event.y() + 50)
+            self.path.lineTo(event.x() + 50, event.y())
+            self.path.lineTo(event.x() - 50, event.y())
             p.drawPath(self.path)
-            p.end()
-            print(2)
-            Drawerd().saveImage("nwepict.jpg", "JPG")
-            self.update()
+            flag_for_triangle = False
+        else:
+            p.drawPath(self.path)
+        p.end()
+        self.saveImage("nwepict.jpg", "JPG")
+        self.update()
 
     def clearImage(self):
         self.path = QPainterPath()
@@ -108,7 +130,10 @@ class Drawerd(QWidget):
         self.update()
 
     def set_pen_width(self):
-        self.pen_width = 67
+        global penwidth
+        self.pen_width_getter = penWIDTH()
+        self.pen_width_getter.show()
+        self.myPenWidth = penwidth
 
     def type_man(self):
         self.type_file = 0
@@ -124,31 +149,30 @@ class Drawerd(QWidget):
         self.figure_chooser = clssFigure_chooser()
         self.figure_chooser.show()
 
+
 class PROJECT(QDialog):
     def __init__(self):
         super(PROJECT, self).__init__()
         uic.loadUi('Picture.ui', self)
         self.button_for_pen_color.clicked.connect(Drawerd(self).set_color)
+        self.figure_Chooser.clicked.connect(Drawerd(self).get_figure)
+        self.button_for_width.clicked.connect(Drawerd(self).set_pen_width)
         self.widhet = Drawerd(self)
-        self.widhet.move(200,200)
-        self.widhet.resize(400,400)
+        self.widhet.move(200, 200)
+        self.widhet.resize(400, 400)
 
 
-
-
-
-class clssFigure_chooser(QDialog):
-    def __init__(self):
-        super(clssFigure_chooser, self).__init__()
-        uic.loadUi('figureclass.ui', self)
-
+# class clssFigure_chooser(QDialog):
+# def __init__(self):
+# super(clssFigure_chooser, self).__init__()
+# uic.loadUi('figureclass.ui', self)
 
 
 class clasdwnld(QDialog):
     def __init__(self):
         super(clasdwnld, self).__init__()
         self.flag = None
-        uic.loadUi('dwnldproject.ui',self)
+        uic.loadUi('dwnldproject.ui', self)
         self.app = app
         self.filename = QFileDialog.getOpenFileName(self, 'Выберите картинку', '', 'Картинки (*.jpg)')[0]
         self.orig_image = Image.open(self.filename)
@@ -160,7 +184,7 @@ class clasdwnld(QDialog):
         self.change_color.clicked.connect(self.set_channel)
         self.change_color.clicked.connect(self.rotate)
 
-    def keyPressEvent(self,event):
+    def keyPressEvent(self, event):
         if event.key() == Qt.Key_R:
             self.flag = 1
         elif event.key() == Qt.Key_G:
@@ -200,16 +224,66 @@ class clasdwnld(QDialog):
     def except_hook(clc, exception, traseback):
         sys.__excepthook__(clc, exception, traseback)
 
+    def savve(self):
+        pass
+
 
 class clssInstruct(QDialog):
     def __init__(self):
         super(clssInstruct, self).__init__()
         uic.loadUi('instr.ui', self)
+        self.btndwnldinstruct.clicked.connect(self.dwnld)
+
+    def dwnld(self):
+        file = open('dfdfdf')  # чек виз
+
 
 class clssFigure_chooser(QDialog):
     def __init__(self):
-        super(clssInstruct, self).__init__()
-        uic.loadUi('choose.ui', self)
+        super(clssFigure_chooser, self).__init__()
+        uic.loadUi('TRINGLECHOOSER.ui', self)
+        self.OKman.clicked.connect(self.da)
+
+    def da(self):
+        global flag_for_square
+        global flag_for_triangle
+        global flag_for_round
+        if self.figure.currentText() == 'Треугольник':
+            flag_for_triangle = True
+        elif self.figure.currentText() == 'Кружочек':
+            flag_for_round = True
+        elif self.figure.currentText() == 'Квадрат':
+            flag_for_square = True
+        # elif self.figure.itemText() :
+        # flag_for_t
+        # elif self.figure.itemText()
+
+
+class log_creater(QWidget):
+    def __init__(self):
+        super(log_creater, self).__init__()
+        uic.loadUi('logi.ui', self)
+        # .......
+
+    def yescreate(self):
+        pass
+        # csv
+
+    def yescreatebutsql(self):
+        pass
+        # sql
+
+
+class penWIDTH(QDialog):
+    def __init__(self):
+        super(penWIDTH, self).__init__()
+        uic.loadUi('penwidther.ui', self)
+        self.widebtn_2.clicked.connect(self.geetwid)
+
+    def geetwid(self):
+        global penwidth
+        penwidth = int(self.widthline.text())
+        print(penwidth)
 
 
 if __name__ == '__main__':

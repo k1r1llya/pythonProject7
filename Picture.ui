@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>623</height>
+    <width>797</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,16 @@
   <widget class="QPushButton" name="button_for_pen_color">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>80</y>
-     <width>181</width>
+     <x>10</x>
+     <y>10</y>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>NSimSun</family>
+     <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
      <underline>false</underline>
@@ -33,15 +34,15 @@
     </font>
    </property>
    <property name="text">
-    <string>Choose your fighter</string>
+    <string>Выбирайте цвет</string>
    </property>
   </widget>
   <widget class="QPushButton" name="button_for_width">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>80</y>
-     <width>181</width>
+     <x>240</x>
+     <y>10</y>
+     <width>271</width>
      <height>31</height>
     </rect>
    </property>
@@ -56,20 +57,29 @@
     </font>
    </property>
    <property name="text">
-    <string>Choose your weapon</string>
+    <string>ВЫБИРАЙТЕ ШИРИНУ КИСТИ</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnSave">
+  <widget class="QPushButton" name="figure_Chooser">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>82</y>
-     <width>91</width>
+     <x>530</x>
+     <y>10</y>
+     <width>201</width>
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>true</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>ФИГУРЫ</string>
    </property>
   </widget>
  </widget>

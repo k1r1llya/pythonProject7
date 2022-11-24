@@ -1,29 +1,34 @@
-print("Вы находитесь в пещере перед 3 дверями. Введи 1 2 3 чтобы попасть в соответствующую комнату")
-a = int(input())
-if a == 1:
-    print('Вы вновь оказались в пещере. введите 4 5 чтобы попасть в любую из следующих комнат')
-    b = int(input())
-    if b == 4:
-        print('Вы погибли от рук волшебника')
-    elif b == 5:
-        print('Вы победили')
-elif a == 2:
-    print('Вы вновь оказались в пещере. введите 4 5 чтобы попасть в любую из следующих комнат')
-    c = int(input())
-    if c == 4:
-        print("вас сьела жаба")
-    elif c == 5:
-        print('Вы упали с обрыва')
-elif a == 3:
-    print('Вы вновь оказались в пещере. введите 4 5 чтобы попасть в любую из следующих комнат') 
-    n = int(input())
-    if n == 4:
-        print('Вы упали и сломали себе все конечности')
-    elif n == 5:
-        print('Вы победили')
-else:
-    print('error')
+import random
 
-'3'
-3
-5.46466
+import pygame
+
+size = width, height = 400,300
+screen = pygame.display.set_mode(size)
+clock = pygame.time.Clock()
+pygame.display.set_caption('Шарики')
+running = True
+
+circle_radius = 10
+circle_color = pygame.Color((random.randint(0,255), random.randint(0,255), random.randint(0,255)))
+circle = []
+speed = []
+screen2 = pygame.Surface(screen.get_size())
+while running:
+    for event in pygame.event.get():
+        screen2 = pygame.Surface(screen.get_size())
+        if event.type == pygame.MOUSEBUTTONUP:
+            circle.append(list(event.pos))
+            speed.append([-1,-1])
+    screen2.fill(pygame.Color('black'))
+    for i in range(len(circle)):
+        for ext in (0,1):
+            if circle[i][ext] >= size[ext] - circle_radius or circle[i][ext] <= circle_radius:
+                speed[i][ext] = -speed[i][ext]
+            circle[i][ext] += speed[i][ext]
+
+        pygame.draw.circle(screen2,circle_color,circle[i], circle_radius,0)
+
+    screen.blit(screen2,(0,0))
+    pygame.display.flip()
+    clock.tick(30)
+pygame.quit()

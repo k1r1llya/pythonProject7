@@ -47,8 +47,8 @@ class Drawer(QWidget):
         self.image.fill(Qt.white)
         self.curr_image = Image.open('nwepict.jpg')
         self.image = ImageQt(self.curr_image)
-        print(self.image)
         self.myPenColor = QColorDialog.getColor()
+        print(self.myPenColor)
 
     def mouseMoveEvent(self, event):
         self.path.lineTo(event.pos())
@@ -58,7 +58,7 @@ class Drawer(QWidget):
                     Qt.RoundJoin))
         p.drawPath(self.path)
         p.end()
-        Drawer().saveImage("nwepict.jpg", "JPG")
+        self.saveImage("nwepict.jpg", "JPG")
         self.update()
 
 
