@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>797</width>
-    <height>646</height>
+    <width>1906</width>
+    <height>1055</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="button_for_pen_color">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>210</x>
      <y>10</y>
      <width>211</width>
      <height>31</height>
@@ -40,7 +40,7 @@
   <widget class="QPushButton" name="button_for_width">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>450</x>
      <y>10</y>
      <width>271</width>
      <height>31</height>
@@ -63,7 +63,7 @@
   <widget class="QPushButton" name="figure_Chooser">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>750</x>
      <y>10</y>
      <width>201</width>
      <height>31</height>
@@ -80,6 +80,29 @@
    </property>
    <property name="text">
     <string>ФИГУРЫ</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="imagesaver">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Yu Gothic UI Light</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="whatsThis">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLNbvXxz9kwm6XPpBndfJy0WJ_wwTrsEWY0dZ1aFsN&amp;amp;s&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;s&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
    </property>
   </widget>
  </widget>

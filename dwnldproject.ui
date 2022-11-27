@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>dialog</class>
+ <widget class="QDialog" name="dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
-    <height>601</height>
+    <width>1017</width>
+    <height>419</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="rotater">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>470</y>
-     <width>131</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Rotate</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>300</y>
-     <width>131</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>470</y>
-     <width>69</width>
-     <height>22</height>
+     <x>200</x>
+     <y>130</y>
+     <width>181</width>
+     <height>31</height>
     </rect>
    </property>
+   <item>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </item>
    <item>
     <property name="text">
      <string>90</string>
@@ -66,91 +48,43 @@
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>0</y>
-     <width>591</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>For changes in color you can press R,G or B or you can do it by hand </string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>70</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>36</y>
-     <width>71</width>
-     <height>20</height>
+     <x>30</x>
+     <y>30</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>RED</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>70</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>70</y>
-     <width>113</width>
-     <height>20</height>
-    </rect>
+    <string>Красная гамма: нажмите R</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>40</y>
-     <width>47</width>
-     <height>13</height>
+     <x>360</x>
+     <y>30</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>BLUE</string>
+    <string>Голубая гамма: нажмите B</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>35</y>
-     <width>47</width>
-     <height>21</height>
+     <y>30</y>
+     <width>141</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>GREEN</string>
+    <string>Зеленая гамма: нажмите G</string>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -169,10 +103,10 @@
   <widget class="QLabel" name="image123">
    <property name="geometry">
     <rect>
-     <x>536</x>
-     <y>12</y>
-     <width>571</width>
-     <height>581</height>
+     <x>570</x>
+     <y>0</y>
+     <width>431</width>
+     <height>461</height>
     </rect>
    </property>
    <property name="text">
@@ -247,14 +181,102 @@
   <widget class="QPushButton" name="change_color">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>470</y>
-     <width>75</width>
+     <x>160</x>
+     <y>270</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Применить</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonsave">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>501</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Сохранить изменения</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Повернуть на: </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttoncrop">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>220</y>
+     <width>231</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Обрезать</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_7">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>350</y>
+     <width>3</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>60</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Негатив: нажмите N</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>60</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Вернуть все обратно: нажмите P</string>
    </property>
   </widget>
  </widget>
